@@ -1,0 +1,8 @@
+#!/bin/bash
+# File: range
+if [[ "$1" -le 0 ]]
+then
+  seq "$1" 0
+else
+  seq 0 "$1"
+fi

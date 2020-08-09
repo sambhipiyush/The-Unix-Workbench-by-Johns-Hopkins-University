@@ -1,0 +1,3 @@
+#!/usr/bin/parallel --shebang-wrap /usr/bin/Rscript --vanilla --slave
+args <- commandArgs(trailingOnly = TRUE)
+print(paste("Arguments: ",args))

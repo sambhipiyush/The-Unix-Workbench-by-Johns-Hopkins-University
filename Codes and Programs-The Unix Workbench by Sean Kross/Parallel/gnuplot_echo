@@ -1,0 +1,2 @@
+#!/usr/bin/parallel --shebang-wrap ARG={} /usr/bin/gnuplot
+print "Arguments: ", system('echo $ARG')

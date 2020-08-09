@@ -1,0 +1,2 @@
+#!/usr/bin/parallel --shebang-wrap /bin/bash
+echo Arguments: "$@"

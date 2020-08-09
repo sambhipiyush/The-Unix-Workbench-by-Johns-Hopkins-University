@@ -1,0 +1,2 @@
+#!/usr/bin/parallel --shebang-wrap /usr/bin/tclsh
+puts "Arguments: $argv"

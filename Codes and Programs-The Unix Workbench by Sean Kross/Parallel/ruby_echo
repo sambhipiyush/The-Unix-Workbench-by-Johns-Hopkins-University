@@ -1,0 +1,3 @@
+#!/usr/bin/parallel --shebang-wrap /usr/bin/ruby
+print "Arguments: "
+puts ARGV

@@ -1,0 +1,10 @@
+example.*
+abc*
+def*
+num*
+*.tsv
+fixedlen*
+**/outdir/**
+my*.*
+**/my*-dir/**
+my*

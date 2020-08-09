@@ -1,0 +1,7 @@
+#!/usr/bin/parallel --shebang-wrap /usr/bin/lua
+io.write "Arguments: "
+for a = 1, #arg do
+io.write(" ")
+io.write(arg[a])
+end
+print("")

@@ -1,0 +1,8 @@
+#!/usr/bin/parallel --shebang-wrap /usr/bin/php
+<?php
+echo "Arguments: ";
+foreach(array_slice($argv,1) as $v) {
+ echo " $v";
+}
+echo "\n";
+?>
