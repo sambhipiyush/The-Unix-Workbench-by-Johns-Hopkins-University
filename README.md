@@ -13,6 +13,8 @@ Unix forms a foundation that is often very helpful for accomplishing other goals
 \
 This course is intended for folks who are new to programming and new to Unix-like operating systems like macOS and Linux distributions like Ubuntu. Most of the technologies discussed in this course will be accessed via a command line interface. Command line interfaces can seem alien at first, so this course attempts to draw parallels between using the command line and actions that you would normally take while using your mouse and keyboard. You’ll also learn how to write little pieces of software in a programming language called Bash, which allows you to connect together the tools we’ll discuss. My hope is that by the end of this course you be able to use different Unix tools as if they’re interconnecting Lego bricks.
 
+#### [The Unix Workbench E-Book Online Version](https://seankross.com/the-unix-workbench/)
+
 ## Syllabus
 
 ### WEEK 1
