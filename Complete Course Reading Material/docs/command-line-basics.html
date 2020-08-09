@@ -1,0 +1,1009 @@
+<!DOCTYPE html>
+<html >
+
+<head>
+
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Chapter 3 Command Line Basics | The Unix Workbench</title>
+  <meta name="description" content="Chapter 3 Command Line Basics | The Unix Workbench">
+  <meta name="generator" content="bookdown  and GitBook 2.6.7">
+
+  <meta property="og:title" content="Chapter 3 Command Line Basics | The Unix Workbench" />
+  <meta property="og:type" content="book" />
+  <meta property="og:url" content="https://github.com/seankross/the-unix-workbench" />
+  <meta property="og:image" content="https://github.com/seankross/the-unix-workbenchimages/cover.png" />
+  
+  <meta name="github-repo" content="seankross/the-unix-workbench" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 3 Command Line Basics | The Unix Workbench" />
+  
+  
+  <meta name="twitter:image" content="https://github.com/seankross/the-unix-workbenchimages/cover.png" />
+
+<meta name="author" content="Sean Kross">
+
+
+<meta name="date" content="2019-01-22">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  
+  
+<link rel="prev" href="getting-unix.html">
+<link rel="next" href="working-with-unix.html">
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+
+
+
+
+
+
+
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-47412721-2"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-47412721-2');
+</script>
+
+
+<style type="text/css">
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
+}
+pre.numberSource a.sourceLine
+  { position: relative; left: -4em; }
+pre.numberSource a.sourceLine::before
+  { content: attr(data-line-number);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; pointer-events: all; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {  }
+@media screen {
+a.sourceLine::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">The Unix Workbench</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Title Page</a></li>
+<li class="chapter" data-level="" data-path="dedication.html"><a href="dedication.html"><i class="fa fa-check"></i>Dedication</a></li>
+<li class="chapter" data-level="" data-path="acknowledgements.html"><a href="acknowledgements.html"><i class="fa fa-check"></i>Acknowledgements</a></li>
+<li class="chapter" data-level="" data-path="introduction.html"><a href="introduction.html"><i class="fa fa-check"></i>Introduction</a></li>
+<li class="chapter" data-level="1" data-path="what-is-unix.html"><a href="what-is-unix.html"><i class="fa fa-check"></i><b>1</b> What is Unix?</a></li>
+<li class="chapter" data-level="2" data-path="getting-unix.html"><a href="getting-unix.html"><i class="fa fa-check"></i><b>2</b> Getting Unix</a><ul>
+<li class="chapter" data-level="2.1" data-path="getting-unix.html"><a href="getting-unix.html#mac-ubuntu-users"><i class="fa fa-check"></i><b>2.1</b> Mac &amp; Ubuntu Users</a></li>
+<li class="chapter" data-level="2.2" data-path="getting-unix.html"><a href="getting-unix.html#windows"><i class="fa fa-check"></i><b>2.2</b> Windows</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="command-line-basics.html"><a href="command-line-basics.html"><i class="fa fa-check"></i><b>3</b> Command Line Basics</a><ul>
+<li class="chapter" data-level="3.1" data-path="command-line-basics.html"><a href="command-line-basics.html#hello-terminal"><i class="fa fa-check"></i><b>3.1</b> Hello Terminal!</a><ul>
+<li class="chapter" data-level="3.1.1" data-path="command-line-basics.html"><a href="command-line-basics.html#summary"><i class="fa fa-check"></i><b>3.1.1</b> Summary</a></li>
+<li class="chapter" data-level="3.1.2" data-path="command-line-basics.html"><a href="command-line-basics.html#exercises"><i class="fa fa-check"></i><b>3.1.2</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="3.2" data-path="command-line-basics.html"><a href="command-line-basics.html#navigating-the-command-line"><i class="fa fa-check"></i><b>3.2</b> Navigating the Command Line</a><ul>
+<li class="chapter" data-level="3.2.1" data-path="command-line-basics.html"><a href="command-line-basics.html#summary-1"><i class="fa fa-check"></i><b>3.2.1</b> Summary</a></li>
+<li class="chapter" data-level="3.2.2" data-path="command-line-basics.html"><a href="command-line-basics.html#exercises-1"><i class="fa fa-check"></i><b>3.2.2</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="3.3" data-path="command-line-basics.html"><a href="command-line-basics.html#creation-and-inspection"><i class="fa fa-check"></i><b>3.3</b> Creation and Inspection</a><ul>
+<li class="chapter" data-level="3.3.1" data-path="command-line-basics.html"><a href="command-line-basics.html#summary-2"><i class="fa fa-check"></i><b>3.3.1</b> Summary</a></li>
+<li class="chapter" data-level="3.3.2" data-path="command-line-basics.html"><a href="command-line-basics.html#exercises-2"><i class="fa fa-check"></i><b>3.3.2</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="3.4" data-path="command-line-basics.html"><a href="command-line-basics.html#migration-and-destruction"><i class="fa fa-check"></i><b>3.4</b> Migration and Destruction</a><ul>
+<li class="chapter" data-level="3.4.1" data-path="command-line-basics.html"><a href="command-line-basics.html#summary-3"><i class="fa fa-check"></i><b>3.4.1</b> Summary</a></li>
+<li class="chapter" data-level="3.4.2" data-path="command-line-basics.html"><a href="command-line-basics.html#exercises-3"><i class="fa fa-check"></i><b>3.4.2</b> Exercises</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="working-with-unix.html"><a href="working-with-unix.html"><i class="fa fa-check"></i><b>4</b> Working with Unix</a><ul>
+<li class="chapter" data-level="4.1" data-path="working-with-unix.html"><a href="working-with-unix.html#self-help"><i class="fa fa-check"></i><b>4.1</b> Self-Help</a><ul>
+<li class="chapter" data-level="4.1.1" data-path="working-with-unix.html"><a href="working-with-unix.html#summary-4"><i class="fa fa-check"></i><b>4.1.1</b> Summary</a></li>
+<li class="chapter" data-level="4.1.2" data-path="working-with-unix.html"><a href="working-with-unix.html#exercises-4"><i class="fa fa-check"></i><b>4.1.2</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="4.2" data-path="working-with-unix.html"><a href="working-with-unix.html#get-wild"><i class="fa fa-check"></i><b>4.2</b> Get Wild</a><ul>
+<li class="chapter" data-level="4.2.1" data-path="working-with-unix.html"><a href="working-with-unix.html#summary-5"><i class="fa fa-check"></i><b>4.2.1</b> Summary</a></li>
+<li class="chapter" data-level="4.2.2" data-path="working-with-unix.html"><a href="working-with-unix.html#exercises-5"><i class="fa fa-check"></i><b>4.2.2</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="4.3" data-path="working-with-unix.html"><a href="working-with-unix.html#search"><i class="fa fa-check"></i><b>4.3</b> Search</a><ul>
+<li class="chapter" data-level="4.3.1" data-path="working-with-unix.html"><a href="working-with-unix.html#regular-expressions"><i class="fa fa-check"></i><b>4.3.1</b> Regular Expressions</a></li>
+<li class="chapter" data-level="4.3.2" data-path="working-with-unix.html"><a href="working-with-unix.html#metacharacters"><i class="fa fa-check"></i><b>4.3.2</b> Metacharacters</a></li>
+<li class="chapter" data-level="4.3.3" data-path="working-with-unix.html"><a href="working-with-unix.html#character-sets"><i class="fa fa-check"></i><b>4.3.3</b> Character Sets</a></li>
+<li class="chapter" data-level="4.3.4" data-path="working-with-unix.html"><a href="working-with-unix.html#escaping-anchors-odds-and-ends"><i class="fa fa-check"></i><b>4.3.4</b> Escaping, Anchors, Odds, and Ends</a></li>
+<li class="chapter" data-level="4.3.5" data-path="working-with-unix.html"><a href="working-with-unix.html#find"><i class="fa fa-check"></i><b>4.3.5</b> <code>find</code></a></li>
+<li class="chapter" data-level="4.3.6" data-path="working-with-unix.html"><a href="working-with-unix.html#summary-6"><i class="fa fa-check"></i><b>4.3.6</b> Summary</a></li>
+<li class="chapter" data-level="4.3.7" data-path="working-with-unix.html"><a href="working-with-unix.html#exercises-6"><i class="fa fa-check"></i><b>4.3.7</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="4.4" data-path="working-with-unix.html"><a href="working-with-unix.html#configure"><i class="fa fa-check"></i><b>4.4</b> Configure</a><ul>
+<li class="chapter" data-level="4.4.1" data-path="working-with-unix.html"><a href="working-with-unix.html#history"><i class="fa fa-check"></i><b>4.4.1</b> History</a></li>
+<li class="chapter" data-level="4.4.2" data-path="working-with-unix.html"><a href="working-with-unix.html#customizing-bash"><i class="fa fa-check"></i><b>4.4.2</b> Customizing Bash</a></li>
+<li class="chapter" data-level="4.4.3" data-path="working-with-unix.html"><a href="working-with-unix.html#summary-7"><i class="fa fa-check"></i><b>4.4.3</b> Summary</a></li>
+</ul></li>
+<li class="chapter" data-level="4.5" data-path="working-with-unix.html"><a href="working-with-unix.html#differentiate"><i class="fa fa-check"></i><b>4.5</b> Differentiate</a><ul>
+<li class="chapter" data-level="4.5.1" data-path="working-with-unix.html"><a href="working-with-unix.html#summary-8"><i class="fa fa-check"></i><b>4.5.1</b> Summary</a></li>
+</ul></li>
+<li class="chapter" data-level="4.6" data-path="working-with-unix.html"><a href="working-with-unix.html#pipes"><i class="fa fa-check"></i><b>4.6</b> Pipes</a><ul>
+<li class="chapter" data-level="4.6.1" data-path="working-with-unix.html"><a href="working-with-unix.html#summary-9"><i class="fa fa-check"></i><b>4.6.1</b> Summary</a></li>
+<li class="chapter" data-level="4.6.2" data-path="working-with-unix.html"><a href="working-with-unix.html#exercises-7"><i class="fa fa-check"></i><b>4.6.2</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="4.7" data-path="working-with-unix.html"><a href="working-with-unix.html#make"><i class="fa fa-check"></i><b>4.7</b> Make</a><ul>
+<li class="chapter" data-level="4.7.1" data-path="working-with-unix.html"><a href="working-with-unix.html#summary-10"><i class="fa fa-check"></i><b>4.7.1</b> Summary</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="bash-programming.html"><a href="bash-programming.html"><i class="fa fa-check"></i><b>5</b> Bash Programming</a><ul>
+<li class="chapter" data-level="5.1" data-path="bash-programming.html"><a href="bash-programming.html#math"><i class="fa fa-check"></i><b>5.1</b> Math</a><ul>
+<li class="chapter" data-level="5.1.1" data-path="bash-programming.html"><a href="bash-programming.html#summary-11"><i class="fa fa-check"></i><b>5.1.1</b> Summary</a></li>
+<li class="chapter" data-level="5.1.2" data-path="bash-programming.html"><a href="bash-programming.html#exercises-8"><i class="fa fa-check"></i><b>5.1.2</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="5.2" data-path="bash-programming.html"><a href="bash-programming.html#variables"><i class="fa fa-check"></i><b>5.2</b> Variables</a><ul>
+<li class="chapter" data-level="5.2.1" data-path="bash-programming.html"><a href="bash-programming.html#summary-12"><i class="fa fa-check"></i><b>5.2.1</b> Summary</a></li>
+<li class="chapter" data-level="5.2.2" data-path="bash-programming.html"><a href="bash-programming.html#exercises-9"><i class="fa fa-check"></i><b>5.2.2</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="5.3" data-path="bash-programming.html"><a href="bash-programming.html#user-input"><i class="fa fa-check"></i><b>5.3</b> User Input</a><ul>
+<li class="chapter" data-level="5.3.1" data-path="bash-programming.html"><a href="bash-programming.html#summary-13"><i class="fa fa-check"></i><b>5.3.1</b> Summary</a></li>
+<li class="chapter" data-level="5.3.2" data-path="bash-programming.html"><a href="bash-programming.html#exercises-10"><i class="fa fa-check"></i><b>5.3.2</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="5.4" data-path="bash-programming.html"><a href="bash-programming.html#logic-and-ifelse"><i class="fa fa-check"></i><b>5.4</b> Logic and If/Else</a><ul>
+<li class="chapter" data-level="5.4.1" data-path="bash-programming.html"><a href="bash-programming.html#conditional-execution"><i class="fa fa-check"></i><b>5.4.1</b> Conditional Execution</a></li>
+<li class="chapter" data-level="5.4.2" data-path="bash-programming.html"><a href="bash-programming.html#conditional-expressions"><i class="fa fa-check"></i><b>5.4.2</b> Conditional Expressions</a></li>
+<li class="chapter" data-level="5.4.3" data-path="bash-programming.html"><a href="bash-programming.html#if-and-else"><i class="fa fa-check"></i><b>5.4.3</b> If and Else</a></li>
+<li class="chapter" data-level="5.4.4" data-path="bash-programming.html"><a href="bash-programming.html#summary-14"><i class="fa fa-check"></i><b>5.4.4</b> Summary</a></li>
+<li class="chapter" data-level="5.4.5" data-path="bash-programming.html"><a href="bash-programming.html#exercises-11"><i class="fa fa-check"></i><b>5.4.5</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="5.5" data-path="bash-programming.html"><a href="bash-programming.html#arrays"><i class="fa fa-check"></i><b>5.5</b> Arrays</a><ul>
+<li class="chapter" data-level="5.5.1" data-path="bash-programming.html"><a href="bash-programming.html#summary-15"><i class="fa fa-check"></i><b>5.5.1</b> Summary</a></li>
+<li class="chapter" data-level="5.5.2" data-path="bash-programming.html"><a href="bash-programming.html#exercises-12"><i class="fa fa-check"></i><b>5.5.2</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="5.6" data-path="bash-programming.html"><a href="bash-programming.html#braces"><i class="fa fa-check"></i><b>5.6</b> Braces</a><ul>
+<li class="chapter" data-level="5.6.1" data-path="bash-programming.html"><a href="bash-programming.html#summary-16"><i class="fa fa-check"></i><b>5.6.1</b> Summary</a></li>
+<li class="chapter" data-level="5.6.2" data-path="bash-programming.html"><a href="bash-programming.html#exercises-13"><i class="fa fa-check"></i><b>5.6.2</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="5.7" data-path="bash-programming.html"><a href="bash-programming.html#loops"><i class="fa fa-check"></i><b>5.7</b> Loops</a><ul>
+<li class="chapter" data-level="5.7.1" data-path="bash-programming.html"><a href="bash-programming.html#for"><i class="fa fa-check"></i><b>5.7.1</b> <code>for</code></a></li>
+<li class="chapter" data-level="5.7.2" data-path="bash-programming.html"><a href="bash-programming.html#while"><i class="fa fa-check"></i><b>5.7.2</b> <code>while</code></a></li>
+<li class="chapter" data-level="5.7.3" data-path="bash-programming.html"><a href="bash-programming.html#nesting"><i class="fa fa-check"></i><b>5.7.3</b> Nesting</a></li>
+<li class="chapter" data-level="5.7.4" data-path="bash-programming.html"><a href="bash-programming.html#summary-17"><i class="fa fa-check"></i><b>5.7.4</b> Summary</a></li>
+<li class="chapter" data-level="5.7.5" data-path="bash-programming.html"><a href="bash-programming.html#exercises-14"><i class="fa fa-check"></i><b>5.7.5</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="5.8" data-path="bash-programming.html"><a href="bash-programming.html#functions"><i class="fa fa-check"></i><b>5.8</b> Functions</a><ul>
+<li class="chapter" data-level="5.8.1" data-path="bash-programming.html"><a href="bash-programming.html#writing-functions"><i class="fa fa-check"></i><b>5.8.1</b> Writing Functions</a></li>
+<li class="chapter" data-level="5.8.2" data-path="bash-programming.html"><a href="bash-programming.html#getting-values-from-functions"><i class="fa fa-check"></i><b>5.8.2</b> Getting Values from Functions</a></li>
+<li class="chapter" data-level="5.8.3" data-path="bash-programming.html"><a href="bash-programming.html#summary-18"><i class="fa fa-check"></i><b>5.8.3</b> Summary</a></li>
+<li class="chapter" data-level="5.8.4" data-path="bash-programming.html"><a href="bash-programming.html#exercises-15"><i class="fa fa-check"></i><b>5.8.4</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="5.9" data-path="bash-programming.html"><a href="bash-programming.html#writing-programs"><i class="fa fa-check"></i><b>5.9</b> Writing Programs</a><ul>
+<li class="chapter" data-level="5.9.1" data-path="bash-programming.html"><a href="bash-programming.html#the-unix-philosophy"><i class="fa fa-check"></i><b>5.9.1</b> The Unix Philosophy</a></li>
+<li class="chapter" data-level="5.9.2" data-path="bash-programming.html"><a href="bash-programming.html#making-programs-executable"><i class="fa fa-check"></i><b>5.9.2</b> Making Programs Executable</a></li>
+<li class="chapter" data-level="5.9.3" data-path="bash-programming.html"><a href="bash-programming.html#environmental-variables"><i class="fa fa-check"></i><b>5.9.3</b> Environmental Variables</a></li>
+<li class="chapter" data-level="5.9.4" data-path="bash-programming.html"><a href="bash-programming.html#summary-19"><i class="fa fa-check"></i><b>5.9.4</b> Summary</a></li>
+<li class="chapter" data-level="5.9.5" data-path="bash-programming.html"><a href="bash-programming.html#exercises-16"><i class="fa fa-check"></i><b>5.9.5</b> Exercises</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="git-and-github.html"><a href="git-and-github.html"><i class="fa fa-check"></i><b>6</b> Git and GitHub</a><ul>
+<li class="chapter" data-level="6.1" data-path="git-and-github.html"><a href="git-and-github.html#what-are-git-and-github"><i class="fa fa-check"></i><b>6.1</b> What are Git and GitHub?</a></li>
+<li class="chapter" data-level="6.2" data-path="git-and-github.html"><a href="git-and-github.html#setting-up-git-and-github"><i class="fa fa-check"></i><b>6.2</b> Setting Up Git and GitHub</a></li>
+<li class="chapter" data-level="6.3" data-path="git-and-github.html"><a href="git-and-github.html#getting-started-with-git"><i class="fa fa-check"></i><b>6.3</b> Getting Started with Git</a><ul>
+<li class="chapter" data-level="6.3.1" data-path="git-and-github.html"><a href="git-and-github.html#summary-20"><i class="fa fa-check"></i><b>6.3.1</b> Summary</a></li>
+<li class="chapter" data-level="6.3.2" data-path="git-and-github.html"><a href="git-and-github.html#exercises-17"><i class="fa fa-check"></i><b>6.3.2</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="6.4" data-path="git-and-github.html"><a href="git-and-github.html#important-git-features"><i class="fa fa-check"></i><b>6.4</b> Important Git Features</a><ul>
+<li class="chapter" data-level="6.4.1" data-path="git-and-github.html"><a href="git-and-github.html#getting-help-logs-and-diffs"><i class="fa fa-check"></i><b>6.4.1</b> Getting Help, Logs, and Diffs</a></li>
+<li class="chapter" data-level="6.4.2" data-path="git-and-github.html"><a href="git-and-github.html#ignoring-files"><i class="fa fa-check"></i><b>6.4.2</b> Ignoring Files</a></li>
+<li class="chapter" data-level="6.4.3" data-path="git-and-github.html"><a href="git-and-github.html#summary-21"><i class="fa fa-check"></i><b>6.4.3</b> Summary</a></li>
+<li class="chapter" data-level="6.4.4" data-path="git-and-github.html"><a href="git-and-github.html#exercises-18"><i class="fa fa-check"></i><b>6.4.4</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="6.5" data-path="git-and-github.html"><a href="git-and-github.html#branching"><i class="fa fa-check"></i><b>6.5</b> Branching</a><ul>
+<li class="chapter" data-level="6.5.1" data-path="git-and-github.html"><a href="git-and-github.html#summary-22"><i class="fa fa-check"></i><b>6.5.1</b> Summary</a></li>
+<li class="chapter" data-level="6.5.2" data-path="git-and-github.html"><a href="git-and-github.html#exercises-19"><i class="fa fa-check"></i><b>6.5.2</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="6.6" data-path="git-and-github.html"><a href="git-and-github.html#github"><i class="fa fa-check"></i><b>6.6</b> GitHub</a><ul>
+<li class="chapter" data-level="6.6.1" data-path="git-and-github.html"><a href="git-and-github.html#markdown"><i class="fa fa-check"></i><b>6.6.1</b> Markdown</a></li>
+<li class="chapter" data-level="6.6.2" data-path="git-and-github.html"><a href="git-and-github.html#pull-requests"><i class="fa fa-check"></i><b>6.6.2</b> Pull Requests</a></li>
+<li class="chapter" data-level="6.6.3" data-path="git-and-github.html"><a href="git-and-github.html#pages"><i class="fa fa-check"></i><b>6.6.3</b> Pages</a></li>
+<li class="chapter" data-level="6.6.4" data-path="git-and-github.html"><a href="git-and-github.html#forking"><i class="fa fa-check"></i><b>6.6.4</b> Forking</a></li>
+<li class="chapter" data-level="6.6.5" data-path="git-and-github.html"><a href="git-and-github.html#summary-23"><i class="fa fa-check"></i><b>6.6.5</b> Summary</a></li>
+<li class="chapter" data-level="6.6.6" data-path="git-and-github.html"><a href="git-and-github.html#exercises-20"><i class="fa fa-check"></i><b>6.6.6</b> Exercises</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="nephology.html"><a href="nephology.html"><i class="fa fa-check"></i><b>7</b> Nephology</a><ul>
+<li class="chapter" data-level="7.1" data-path="nephology.html"><a href="nephology.html#introduction-to-cloud-computing"><i class="fa fa-check"></i><b>7.1</b> Introduction to Cloud Computing</a></li>
+<li class="chapter" data-level="7.2" data-path="nephology.html"><a href="nephology.html#setting-up-digitalocean"><i class="fa fa-check"></i><b>7.2</b> Setting Up DigitalOcean</a></li>
+<li class="chapter" data-level="7.3" data-path="nephology.html"><a href="nephology.html#connecting-to-the-cloud"><i class="fa fa-check"></i><b>7.3</b> Connecting to the Cloud</a><ul>
+<li class="chapter" data-level="7.3.1" data-path="nephology.html"><a href="nephology.html#summary-24"><i class="fa fa-check"></i><b>7.3.1</b> Summary</a></li>
+</ul></li>
+<li class="chapter" data-level="7.4" data-path="nephology.html"><a href="nephology.html#cloud-computing-basics"><i class="fa fa-check"></i><b>7.4</b> Cloud Computing Basics</a><ul>
+<li class="chapter" data-level="7.4.1" data-path="nephology.html"><a href="nephology.html#moving-files-in-and-out-of-the-cloud"><i class="fa fa-check"></i><b>7.4.1</b> Moving Files In and Out of the Cloud</a></li>
+<li class="chapter" data-level="7.4.2" data-path="nephology.html"><a href="nephology.html#talking-to-other-servers"><i class="fa fa-check"></i><b>7.4.2</b> Talking to Other Servers</a></li>
+<li class="chapter" data-level="7.4.3" data-path="nephology.html"><a href="nephology.html#automating-tasks"><i class="fa fa-check"></i><b>7.4.3</b> Automating Tasks</a></li>
+<li class="chapter" data-level="7.4.4" data-path="nephology.html"><a href="nephology.html#summary-25"><i class="fa fa-check"></i><b>7.4.4</b> Summary</a></li>
+<li class="chapter" data-level="7.4.5" data-path="nephology.html"><a href="nephology.html#exercises-21"><i class="fa fa-check"></i><b>7.4.5</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="7.5" data-path="nephology.html"><a href="nephology.html#shutting-down-a-server"><i class="fa fa-check"></i><b>7.5</b> Shutting Down a Server</a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="start-building.html"><a href="start-building.html"><i class="fa fa-check"></i><b>8</b> Start Building</a><ul>
+<li class="chapter" data-level="8.1" data-path="start-building.html"><a href="start-building.html#next-steps"><i class="fa fa-check"></i><b>8.1</b> Next Steps</a></li>
+<li class="chapter" data-level="8.2" data-path="start-building.html"><a href="start-building.html#giving-feedback"><i class="fa fa-check"></i><b>8.2</b> Giving Feedback</a></li>
+<li class="chapter" data-level="8.3" data-path="start-building.html"><a href="start-building.html#using-this-book"><i class="fa fa-check"></i><b>8.3</b> Using this Book</a></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">The Unix Workbench</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="command-line-basics" class="section level1">
+<h1><span class="header-section-number">Chapter 3</span> Command Line Basics</h1>
+<blockquote>
+<p>Of a small spark a great fire. - Gaelic proverb</p>
+</blockquote>
+<div id="hello-terminal" class="section level2">
+<h2><span class="header-section-number">3.1</span> Hello Terminal!</h2>
+<p>Once you have opened up Terminal then you should see a window that
+looks something like this:</p>
+<p><img src="images/shell1.png" /></p>
+<p>What you are looking at is the bash shell! Your shell will surely look different
+than mine, but all bash shells have the same essential parts. As you can see in
+my shell it says <code>seans-air:~ sean$</code>. This string of characters is called the
+<strong>prompt</strong>. You type command line commands after the prompt. The prompt is just
+there to let you know that the shell is ready for you to type in a command.
+Press <code>Enter</code> on your keyboard a few times to see what happens with the prompt.
+Your shell should now look like this:</p>
+<p><img src="images/shell2.png" /></p>
+<p>If you don’t type anything after the prompt and you press <code>Enter</code> then nothing
+happens and you get a new prompt under the old prompt. The white rectangle
+after the prompt is just a cursor that allows you to edit what you have typed
+into the shell. Your cursor might look like a rectangle, a line, or an
+underscore, but all cursors behave the same way. After typing something into
+the command line you can move the cursor back and forth with the left and right
+arrow keys, just like you would when typing an email.</p>
+<p>Now that we have pressed <code>Enter</code> several times our shell looks messy with all of
+those old prompts! Do not worry, you are about to learn your first shell command
+which will clear all of those old prompts from your shell. Type <code>clear</code> at the
+prompt and then hit <code>Enter</code>. Voila! Your shell now only has the current prompt,
+just like when you first opened the terminal.</p>
+<p>Every command line command is actually a little computer program, even commands
+as simple as <code>clear</code>. These commands all tend to have the following structure:</p>
+<pre><code>[command] [options] [arguments]</code></pre>
+<p>Some simple commands like <code>clear</code> do not require any options or arguments.
+Options are usually preceded by a hyphen (<code>-</code>) and they tweak the behavior
+of the command. Arguments can be names of files, raw data, or other options
+that the command requires. A simple command that has an argument is <code>echo</code>.
+The <code>echo</code> command prints a phrase to the console. Enter <code>echo 'Hello World!'</code>
+into the command line to see what happens:</p>
+<pre class="sourceCode bash"><code class="sourceCode bash"><span class="bu">echo</span> <span class="st">&#39;Hello World!&#39;</span></code></pre>
+<pre><code>## Hello World!</code></pre>
+<p>We will be using the above syntax for the rest of the book, where on one line there
+will be a command that I have entered into the command line, and then below that
+command the console output of the command will appear (if there is any
+console output). You can use <code>echo</code> to print any phrase surrounded by single
+quotes (<code>''</code>) to the console.</p>
+<p>If you want to see the last command press the <code>Up</code> arrow key. You can press
+<code>Up</code> and <code>Down</code> in order to scroll through the history of commands that you’ve
+entered. If you want to re-execute a past command, you can scroll to that
+command then press <code>Enter</code>. Try getting back to the <code>echo 'Hello World!'</code>
+command and execute it again.</p>
+<div id="summary" class="section level3">
+<h3><span class="header-section-number">3.1.1</span> Summary</h3>
+<ul>
+<li>You type command line commands after the prompt.</li>
+<li><code>clear</code> will clean up your terminal.</li>
+<li><code>echo</code> prints text to your terminal.</li>
+<li>You can scroll through your command history with the <code>Up</code> and <code>Down</code> arrow
+keys.</li>
+</ul>
+</div>
+<div id="exercises" class="section level3">
+<h3><span class="header-section-number">3.1.2</span> Exercises</h3>
+<ol style="list-style-type: decimal">
+<li>Print your name to the terminal.</li>
+<li>Clear your terminal after completing #1.</li>
+</ol>
+</div>
+</div>
+<div id="navigating-the-command-line" class="section level2">
+<h2><span class="header-section-number">3.2</span> Navigating the Command Line</h2>
+<p>You have learned two command line commands (<code>clear</code> and <code>echo</code>) which is pretty
+good! Before you learn more commands we need to discuss how files and folders
+are organized on your computer.</p>
+<p>Computers are organized in a hierarchy of folders, where a folder can contain
+many folders and files. People who use Unix often refer to folders as
+directories and these terms are interchangeable. This directory hierarchy forms
+a tree, like the diagram below. You can use the command line to navigate these
+trees on your computer.</p>
+<p><img src="images/musictree1.png" /></p>
+<p>As you can see in the image below, my Debussy directory is contained in my Music
+directory. This is the simplest case of how directories are structured.</p>
+<p><img src="images/musictree2.png" /></p>
+<p>The directory structure on most computers is much more complicated, but the
+structure on your computer probably looks something like this:</p>
+<p><img src="images/ft1.png" /></p>
+<p>There are a few special directories that you should be aware of on your
+computer. The directory at the top of this tree is called the root directory.
+The root directory contains all other directories, and is represented by a
+slash (<code>/</code>). The home directory is another special directory which contains your
+personal files, like your photos, documents, and the contents of your desktop.
+The tilde (<code>~</code>) represents a shorthand for your home directory.</p>
+<p>Imagine tracing all of the directories from your root directory to the
+directory you are currently viewing. This sequence of directories is called a
+<strong>path</strong>. The diagram below illustrates the path from the root
+directory to a directory called <em>sean</em>. This directory happens to be my home
+directory.</p>
+<p><img src="images/ft2.png" /></p>
+<p>This path can be written as <code>/Users/sean</code>. Since this is my home directory, We
+can also use <code>~</code> as a shorter way to refer to the same path. We will see this
+demonstrated soon.</p>
+<p>Open the command line if you closed it. Your shell is always in a directory,
+and the directory that your shell starts in your home directory. Whatever
+directory your shell is in is called the <strong>working directory</strong>. Enter the <code>pwd</code> command into your shell to <strong>p</strong>rint the <strong>w</strong>orking <strong>d</strong>irectory.</p>
+<pre class="sourceCode bash"><code class="sourceCode bash"><span class="bu">pwd</span></code></pre>
+<pre><code>## /Users/sean</code></pre>
+<p>You can change your working directory using the <code>cd</code> command. If you use the
+<code>cd</code> command without any arguments then your working directory is changed
+to your home directory.</p>
+<p>Enter <code>cd</code> into the command line and then enter <code>pwd</code>.</p>
+<pre class="sourceCode bash"><code class="sourceCode bash"><span class="bu">cd</span>
+<span class="bu">pwd</span></code></pre>
+<pre><code>## /Users/sean</code></pre>
+<p>You were in your working directory to start, and by entering <code>cd</code> into the
+command line you did technically <strong>c</strong>hange <strong>d</strong>irectory, you just changed it
+to your home directory (the directory you were in to begin with). To use <code>cd</code> to
+change your working directory to a directory other than your home directory, you
+need to provide <code>cd</code> with the path to another directory as an argument. You can
+specify a path as either a path that is <strong>relative</strong> to your current directory,
+or you can specify the <strong>absolute</strong> path to a directory starting from the root
+of your computer. Let’s say we simply want to change the working directory to
+one of the folders that is inside our home directory. First we need to be able to
+see which folders are in our working directory. You can list the files and
+folders in a directory using the <code>ls</code> command. Let’s use the <code>ls</code> command in our
+home directory to list the files and folders contained within it.</p>
+<pre class="sourceCode bash"><code class="sourceCode bash"><span class="fu">ls</span></code></pre>
+<pre><code>## Desktop
+## Documents
+## Photos
+## Music
+## todo.txt</code></pre>
+<p>It looks like I have four folders and one text file in my home directory. Now
+let’s switch into the Music directory:</p>
+<pre class="sourceCode bash"><code class="sourceCode bash"><span class="bu">cd</span> Music</code></pre>
+<p>As you can see the path to the current working directory has changed:</p>
+<pre class="sourceCode bash"><code class="sourceCode bash"><span class="bu">pwd</span></code></pre>
+<pre><code>## /Users/sean/Music</code></pre>
+<p>I specified a <strong>relative</strong> path when I entered <code>cd Music</code>. The path to the
+Music directory is just <code>Music/</code> relative to my previous working directory.
+I can go back to <code>/Users/sean/</code> with the command <code>cd ..</code> which changes the
+working directory to the folder above the current working directory:</p>
+<pre class="sourceCode bash"><code class="sourceCode bash"><span class="bu">cd</span> ..
+<span class="bu">pwd</span></code></pre>
+<pre><code>## /Users/sean</code></pre>
+<p>Notice that <code>..</code> is also a relative path, since it specifies the directory above
+your current working directory. Similarly <code>.</code> is the path to your current
+working directory. Therefore since my current working directory is <code>/Users/sean</code>
+then <code>cd Music</code> is the same as <code>cd ./Music</code>.</p>
+<p>I can <code>cd</code> to any folder as long as I know the <strong>absolute</strong> path to that folder.
+For example I can <code>cd</code> to <code>/Users/sean/Music</code> by entering the following into
+the shell:</p>
+<pre class="sourceCode bash"><code class="sourceCode bash"><span class="bu">cd</span> ~/Music
+<span class="bu">pwd</span></code></pre>
+<pre><code>## /Users/sean/Music</code></pre>
+<p>It does not matter what directory the shell is in since we are using an
+absolute path. Therefore we can jump straight to a directory as long as we specify
+the absolute path. Notice above that we used <code>~</code> as shortcut for <code>/Users/sean/</code>.</p>
+<p>Of course you should not expect yourself to have every
+absolute path on your computer memorized! You can use a terminal feature called
+<strong>tab completion</strong> in order to speed up typing paths and other commands. Enter
+the following into your shell, and then try pressing the <code>Tab</code> key (on some
+machines you need to press it twice):</p>
+<pre class="sourceCode bash"><code class="sourceCode bash"><span class="bu">cd</span> ~/</code></pre>
+<p>(press <code>Tab</code>)</p>
+<pre><code>## Desktop
+## Documents
+## Photos
+## Music
+## todo.txt</code></pre>
+<p>Pressing tab shows you a list of all files and folders inside of the <code>~/</code>
+directory. Now I’m going to type <code>~/D</code> into my terminal and you can see what
+happens when I press <code>Tab</code> again:</p>
+<pre class="sourceCode bash"><code class="sourceCode bash"><span class="bu">cd</span> ~/D</code></pre>
+<p>(press <code>Tab</code>)</p>
+<pre><code>## Desktop
+## Documents</code></pre>
+<p>Since I added a “D” to the path, only folders with names that start with a “D”
+are listed. If I type <code>cd ~/De</code> into the console and then press <code>Tab</code> then the
+command will autocomplete to <code>cd ~/Desktop/</code>. If I press <code>Tab</code> again, the console
+will list all of the files and folders on my desktop.</p>
+<p>Make sure to pause and try this yourself in your own terminal! You will not have
+the same files or folders that I do, but you should try using <code>cd</code> and tab
+completion with directories and files that start with the same letters.</p>
+<div id="summary-1" class="section level3">
+<h3><span class="header-section-number">3.2.1</span> Summary</h3>
+<ul>
+<li>You can identify a specific file or folder by its path.</li>
+<li>The root directory (<code>/</code>) contains all of the folders and files on your
+computer.</li>
+<li>Your home directory (<code>~</code>) is the directory where your terminal always starts.</li>
+<li>Your terminal is always inside of a working directory.</li>
+<li>When you open your terminal your working directory will be set to the home
+directory.</li>
+<li>Use the <code>cd</code> command to <strong>c</strong>hange your working <strong>d</strong>irectory.</li>
+<li>The <code>pwd</code> command will <strong>p</strong>rint the <strong>w</strong>orking <strong>d</strong>irectory.</li>
+<li>The <code>ls</code> command will <strong>l</strong>i<strong>s</strong>t files and folders in a directory.</li>
+</ul>
+</div>
+<div id="exercises-1" class="section level3">
+<h3><span class="header-section-number">3.2.2</span> Exercises</h3>
+<ol style="list-style-type: decimal">
+<li>Set your working directory to the root directory.</li>
+<li>Set your working directory to your home directory using three different
+commands.</li>
+<li>Find a folder on your computer using your file and folder browser, and then
+set your working directory to that folder using the terminal.</li>
+<li>List all of the files and folders in the directory you navigated to in #3.</li>
+</ol>
+</div>
+</div>
+<div id="creation-and-inspection" class="section level2">
+<h2><span class="header-section-number">3.3</span> Creation and Inspection</h2>
+<p>Now that you can fluidly use your terminal to bound between directories all
+over your computer, it is time to learn some actions you can perform on folders and
+files. One of the first actions you will probably want to take when opening up a
+fresh terminal is to create a new folder or file. You can <strong>m</strong>a<strong>k</strong>e a
+<strong>dir</strong>ectory with the <code>mkdir</code> command, followed by the path to the new
+directory. First let’s look at the contents of my home directory:</p>
+<pre class="sourceCode bash"><code class="sourceCode bash"><span class="bu">cd</span>
+<span class="fu">ls</span></code></pre>
+<pre><code>## Desktop
+## Documents
+## Photos
+## Music
+## todo.txt</code></pre>
+<p>Let’s create a new directory to store some code files we am going to write
+later. We can use <code>mkdir</code> to create a new directory called <code>Code</code>:</p>
+<pre class="sourceCode bash"><code class="sourceCode bash"><span class="fu">mkdir</span> Code
+<span class="fu">ls</span></code></pre>
+<pre><code>## Desktop
+## Documents
+## Photos
+## Music
+## todo.txt
+## Code</code></pre>
+<p>It worked! Notice that the argument <code>Code</code> to the command <code>mkdir</code> is a relative
+path, however we could have specified an absolute path. In general you should
+expect Unix tools that take paths as arguments to accept both relative and
+absolute paths.</p>
+<p>There are a few different ways to create a new file on the command line. The
+most simple way to create a blank file is to use the <code>touch</code> command, followed
+by the path to the file you want to create. In this example we are going to create
+a new journal entry using <code>touch</code>:</p>
+<pre class="sourceCode bash"><code class="sourceCode bash"><span class="fu">touch</span> journal-2017-01-24.txt
+<span class="fu">ls</span></code></pre>
+<pre><code>## Desktop
+## Documents
+## Photos
+## Music
+## todo.txt
+## Code
+## journal-2017-01-24.txt</code></pre>
+<p>A new file has been created! We have been using <code>ls</code> to list the files and folders
+in the current directory, but using <code>ls</code> alone does not differentiate between
+which of the listed items are folders and which are files. Thankfully you can
+use the <code>-l</code> option with <code>ls</code> in order to get a <strong>l</strong>ong listing of files in
+a directory.</p>
+<pre class="sourceCode bash"><code class="sourceCode bash"><span class="fu">ls</span> -l</code></pre>
+<pre><code>## drwxr-xr-x  2 sean  staff  68 Jan 24 12:31 Code
+## drwxr-xr-x  2 sean  staff  94 Jan 20 12:44 Desktop
+## drwxr-xr-x  2 sean  staff  24 Jan 20 12:44 Documents
+## drwxr-xr-x  2 sean  staff  68 Jan 20 12:36 Music
+## drwxr-xr-x  2 sean  staff  68 Jan 20 12:35 Photos
+## -rw-r--r--  1 sean  staff  90 Jan 24 11:33 journal-2017-01-24.txt
+## -rw-r--r--  1 sean  staff  70 Jan 24 10:58 todo.txt</code></pre>
+<p>There is a row in the resulting table for each file or folder. If the entry in the
+first column is a <code>d</code>, then the row in the table corresponds to a <strong>d</strong>irectory,
+otherwise the information in the row corresponds to a file. As you can see in my
+home directory there are five directories and two files. The string of
+characters following the <code>d</code> in the case of a directory or following the first
+<code>-</code> in the case of a file represent the permissions for that file or directory.
+We will cover permissions in a later section. The columns of this table also show
+who created the file, the group that the creator of the file belongs to (we will
+cover groups later when we cover permissions), the size of the file, the time
+and date when the file was last modified, and then finally the name of the file.</p>
+<p>Now that we have created a file there are a few different ways that we can inspect
+and edit this file. First let’s use the <code>wc</code> command to view the <strong>w</strong>ord
+<strong>c</strong>ount and other information about the file:</p>
+<pre class="sourceCode bash"><code class="sourceCode bash"><span class="fu">wc</span> todo.txt</code></pre>
+<pre><code>##       3      14      70 todo.txt</code></pre>
+<p>The <code>wc</code> command displays the number of lines in a file followed by the number
+of words and then the number of characters. Since this file looks pretty small
+(only three lines) let’s try printing it to the console using the <code>cat</code> command.</p>
+<pre class="sourceCode bash"><code class="sourceCode bash"><span class="fu">cat</span> todo.txt</code></pre>
+<pre><code>## - email Jeff
+## - write letter to Aunt Marie
+## - get groceries for Shabbat</code></pre>
+<p>The <code>cat</code> command is often used to print text files to the terminal, despite
+the fact that it is really meant to con<strong>cat</strong>enate files. You can see this
+concatenation in action in the following example:</p>
+<pre class="sourceCode bash"><code class="sourceCode bash"><span class="fu">cat</span> todo.txt todo.txt</code></pre>
+<pre><code>## - email Jeff
+## - write letter to Aunt Marie
+## - get groceries for Shabbat
+## - email Jeff
+## - write letter to Aunt Marie
+## - get groceries for Shabbat</code></pre>
+<p>The <code>cat</code> command will combine every text file that is provided as an argument.</p>
+<p>Let’s take a look at how we could view a larger file. There is a file inside
+the Documents directory:</p>
+<pre class="sourceCode bash"><code class="sourceCode bash"><span class="fu">ls</span> Documents</code></pre>
+<pre><code>## a-tale-of-two-cities.txt</code></pre>
+<p>Let’s examine this file to see if it is reasonable to read it with <code>cat</code>:</p>
+<pre class="sourceCode bash"><code class="sourceCode bash"><span class="fu">wc</span> Documents/a-tale-of-two-cities.txt</code></pre>
+<pre><code>##      17    1005    5799 Documents/a-tale-of-two-cities.txt</code></pre>
+<p>Wow, over 1000 words! If we use <code>cat</code> on this file it is liable to take up our
+entire terminal. Instead of using <code>cat</code> for this large file we should use
+<code>less</code>, which is a program designed for viewing multi-page files. Let’s try
+using <code>less</code>:</p>
+<pre class="sourceCode bash"><code class="sourceCode bash"><span class="fu">less</span> Documents/a-tale-of-two-cities.txt</code></pre>
+<pre><code>I. The Period
+
+It was the best of times,
+it was the worst of times,
+it was the age of wisdom,
+it was the age of foolishness,
+it was the epoch of belief,
+it was the epoch of incredulity,
+it was the season of Light,
+it was the season of Darkness,
+it was the spring of hope,
+it was the winter of despair,
+we had everything before us, we had nothing before us, we were all going direct
+Documents/a-tale-of-two-cities.txt</code></pre>
+<p>You can scroll up and down the file line-by-line using the up and down arrow
+keys, and if you want to scroll faster you can use the <code>spacebar</code> to go to the
+next page and the <code>b</code> key to go to the previous page. In order to quit <code>less</code>
+and go back to the prompt press the <code>q</code> key.</p>
+<p>As you can see the <code>less</code> program is a kind of Unix tool with behavior that we
+have not seen before because it “takes over” your terminal. There are a few
+programs like this that we will discuss throughout this book.</p>
+<p>There are also two easy to remember programs for glimpsing the beginning or end
+of a text file: <code>head</code> and <code>tail</code>. Let’s quickly use <code>head</code> and <code>tail</code> on
+<code>a-tale-of-two-cities.txt</code>:</p>
+<pre class="sourceCode bash"><code class="sourceCode bash"><span class="fu">head</span> Documents/a-tale-of-two-cities.txt</code></pre>
+<pre><code>## I. The Period
+## 
+## It was the best of times,
+## it was the worst of times,
+## it was the age of wisdom,
+## it was the age of foolishness,
+## it was the epoch of belief,
+## it was the epoch of incredulity,
+## it was the season of Light,
+## it was the season of Darkness,</code></pre>
+<p>As you can see <code>head</code> prints the first ten lines of the file to the terminal.
+You can specify the number of lines printed with the <code>-n</code> option followed by
+the number of lines you would like to see:</p>
+<pre class="sourceCode bash"><code class="sourceCode bash"><span class="fu">head</span> -n 4 Documents/a-tale-of-two-cities.txt</code></pre>
+<pre><code>## I. The Period
+## 
+## It was the best of times,
+## it was the worst of times,</code></pre>
+<p>The <code>tail</code> program works exactly the same way:</p>
+<pre class="sourceCode bash"><code class="sourceCode bash"><span class="fu">tail</span> Documents/a-tale-of-two-cities.txt</code></pre>
+<pre><code>of an atrocious murderer, and to-morrow of a wretched pilferer who had robbed a
+farmer’s boy of sixpence.
+All these things, and a thousand like them, came to pass in and close upon the
+dear old year one thousand seven hundred and seventy-five. Environed by them,
+while the Woodman and the Farmer worked unheeded, those two of the large jaws,
+and those other two of the plain and the fair faces, trod with stir enough,
+and carried their divine rights with a high hand. Thus did the year one
+thousand seven hundred and seventy-five conduct their Greatnesses, and myriads
+of small creatures—the creatures of this chronicle among the rest—along the
+roads that lay before them.</code></pre>
+<p>We have now gone over a few tools for inspecting files, folders, and their
+contents including <code>ls</code>, <code>wc</code>, <code>cat</code>, <code>less</code>, <code>head</code>, and <code>tail</code>. Before the
+end of this section
+we should discuss a few more techniques for creating and also editing files. One
+easy way to create a file is using <strong>output redirection</strong>. Output redirection
+stores text that would be normally printed to the command line in a text file.
+You can use output redirection by typing the greater-than sign (<code>&gt;</code>) at the end
+of a command followed by the name of the new file that will contain the output
+from the proceeding command. Let’s try an example using <code>echo</code>:</p>
+<pre class="sourceCode bash"><code class="sourceCode bash"><span class="bu">echo</span> <span class="st">&quot;I&#39;m in the terminal.&quot;</span></code></pre>
+<pre><code>## I&#39;m in the terminal.</code></pre>
+<pre class="sourceCode bash"><code class="sourceCode bash"><span class="bu">echo</span> <span class="st">&quot;I&#39;m in the file.&quot;</span> <span class="op">&gt;</span> echo-out.txt</code></pre>
+<p>Only the first command printed output to the terminal. Let’s see if the second
+command worked:</p>
+<pre class="sourceCode bash"><code class="sourceCode bash"><span class="fu">ls</span></code></pre>
+<pre><code>## Desktop
+## Documents
+## Photos
+## Music
+## todo.txt
+## Code
+## journal-2017-01-24.txt
+## echo-out.txt</code></pre>
+<pre class="sourceCode bash"><code class="sourceCode bash"><span class="fu">cat</span> echo-out.txt</code></pre>
+<pre><code>## I&#39;m in the file.</code></pre>
+<p>It worked! You can also <strong>append</strong> text to the end of a file using
+two greater-than signs (<code>&gt;&gt;</code>). Let’s try this feature out:</p>
+<pre class="sourceCode bash"><code class="sourceCode bash"><span class="bu">echo</span> <span class="st">&quot;I have been appended.&quot;</span> <span class="op">&gt;&gt;</span> echo-out.txt
+<span class="fu">cat</span> echo-out.txt</code></pre>
+<pre><code>## I&#39;m in the file.
+## I have been appended.</code></pre>
+<p>Now for a <strong>word of warning</strong>. Imagine that I want to append another line to
+the end of <code>echo-out.txt</code>, so typed <code>echo &quot;A third line.&quot; &gt; echo-out.txt</code> into
+the terminal when really I meant to type <code>echo &quot;A third line.&quot; &gt;&gt; echo-out.txt</code>
+(notice I used <code>&gt;</code> when I meant to use <code>&gt;&gt;</code>). Let’s see what happens:</p>
+<pre class="sourceCode bash"><code class="sourceCode bash"><span class="bu">echo</span> <span class="st">&quot;A third line.&quot;</span> <span class="op">&gt;</span> echo-out.txt
+<span class="fu">cat</span> echo-out.txt</code></pre>
+<pre><code>## A third line.</code></pre>
+<p>Unfortunately we have unintentionally overwritten what was already contained in
+<code>echo-out.txt</code>. There is no undo button in Unix so we will have to live with this
+mistake. This is the first of several lessons demonstrating the damage that you
+should try to avoid inflicting with Unix. Make sure to take extra care when
+executing commands that can modify or delete a file, a typo in the command can
+be potentially devastating. Thankfully there are a few strategies for protecting
+yourself from mistakes, including managing permissions for files, and tracking
+versions of your files with Git, which we will discuss thoroughly in a later
+chapter.</p>
+<p>Finally we should discuss how to edit text files. There are several file editors
+that are available for your terminal including
+<a href="https://en.wikipedia.org/wiki/Vim_(text_editor)"><code>vim</code></a>
+and <a href="https://en.wikipedia.org/wiki/Emacs"><code>emacs</code></a>. Entire books have been
+written about how to use both of these text editors, and if you are interested
+in one of them you should look for resources online about how to use them. The
+one text editor we will discuss using is called <code>nano</code>. Just like <code>less</code>, <code>nano</code>
+uses your entire terminal window. Let’s edit <code>todo.txt</code> using <code>nano</code>:</p>
+<pre class="sourceCode bash"><code class="sourceCode bash"><span class="fu">nano</span> todo.txt</code></pre>
+<pre><code>  GNU nano 2.0.6                File: todo.txt
+
+- email Jeff
+- write letter to Aunt Marie
+- get groceries for Shabbat
+
+
+
+^G Get Help   ^O WriteOut   ^R Read File  ^Y Prev Page  ^K Cut Text   ^C Cur Pos
+^X Exit       ^J Justify    ^W Where Is   ^V Next Page  ^U UnCut Text ^T To Spell</code></pre>
+<p>Once you have started <code>nano</code> you can start editing the text file. The top line of
+the <code>nano</code> editor shows the file you are currently working on, and the bottom two
+lines show a few commands that you can use in <code>nano</code>. The caret character (<code>^</code>)
+represents the <code>Control</code> key on your keyboard, so you can for example type
+<code>Control</code> + <code>O</code> in order to save the changes you have made to the text file, or
+<code>Control</code> + <code>X</code> in order to exit <code>nano</code> and go back to the prompt.</p>
+<p><code>nano</code> is a good editor for beginners because it works similarly to word
+processors you have used before. You can use the arrow keys in order to move your
+cursor around the file, and the rest of the keys on your keyboard work as
+expected. Let’s add an item to the to-do list and then we will save and exit <code>nano</code>
+by typing <code>Control</code> + <code>O</code> followed by <code>Control</code> + <code>X</code>.</p>
+<pre><code>  GNU nano 2.0.6                File: todo.txt
+
+- email Jeff
+- write letter to Aunt Marie
+- get groceries for Shabbat
+- write final section of &quot;command line basics&quot;
+
+
+^G Get Help   ^O WriteOut   ^R Read File  ^Y Prev Page  ^K Cut Text   ^C Cur Pos
+^X Exit       ^J Justify    ^W Where Is   ^V Next Page  ^U UnCut Text ^T To Spell</code></pre>
+<p>Now let’s quickly check if those changes were saved correctly:</p>
+<pre class="sourceCode bash"><code class="sourceCode bash"><span class="fu">cat</span> todo.txt</code></pre>
+<pre><code>## - email Jeff
+## - write letter to Aunt Marie
+## - get groceries for Shabbat
+## - write final section of &quot;command line basics&quot;</code></pre>
+<p>You can also create new text files with <code>nano</code>. Instead of using an existing
+path to a file as the argument to <code>nano</code>, use a path to a file that does not
+yet exist and then save your changes to that file.</p>
+<div id="summary-2" class="section level3">
+<h3><span class="header-section-number">3.3.1</span> Summary</h3>
+<ul>
+<li>Use <code>mkdir</code> to create new directories.</li>
+<li>The <code>touch</code> command creates empty files.</li>
+<li>You can use <code>&gt;</code> to redirect the output of a command into a file.</li>
+<li><code>&gt;&gt;</code> will append command output to the end of a file.</li>
+<li>Print a text file to the command line using <code>cat</code>.</li>
+<li>Inspect properties of a text file with <code>wc</code>.</li>
+<li>Peak at the beginning and end of a text file with <code>head</code> and <code>tail</code>.</li>
+<li>Scroll through a large text file with <code>less</code>.</li>
+<li><code>nano</code> is simple text editor.</li>
+</ul>
+</div>
+<div id="exercises-2" class="section level3">
+<h3><span class="header-section-number">3.3.2</span> Exercises</h3>
+<ol style="list-style-type: decimal">
+<li>Create a new directory called <code>workbench</code> in your home directory.</li>
+<li>Without changing directories create a file called <code>readme.txt</code> inside of
+<code>workbench</code>.</li>
+<li>Append the numbers 1, 2, and 3 to <code>readme.txt</code> so that each number appears on
+it’s own line.</li>
+<li>Print <code>readme.txt</code> to the command line.</li>
+<li>Use output redirection to create a new file in the <code>workbench</code> directory called
+<code>list.txt</code> which lists the files and folders in your home directory.</li>
+<li>Find out how many characters are in <code>list.txt</code> without opening the file or
+printing it to the command line.</li>
+</ol>
+</div>
+</div>
+<div id="migration-and-destruction" class="section level2">
+<h2><span class="header-section-number">3.4</span> Migration and Destruction</h2>
+<p>In this section we will discuss moving, renaming, copying, and deleting files and
+folders. First let’s revisit the contents of our current working directory:</p>
+<pre class="sourceCode bash"><code class="sourceCode bash"><span class="fu">ls</span></code></pre>
+<pre><code>Code
+Documents
+Photos
+Desktop
+Music
+echo-out.txt
+journal-2017-01-24.txt
+todo.txt</code></pre>
+<p>It’s gotten a little sloppy, so let’s clean this directory up. First we will
+make a new directory to store all of the journal entries in called <code>Journal</code>. We
+already know how to do that:</p>
+<pre class="sourceCode bash"><code class="sourceCode bash"><span class="fu">mkdir</span> Journal</code></pre>
+<p>Now we want to move the journal entry <code>journal-2017-01-24.txt</code> into the <code>Journal</code>
+directory. We can <strong>m</strong>o<strong>v</strong>e it using the <code>mv</code> command. <code>mv</code> takes two
+arguments: first the path to the file or folder that you wish to move followed
+by the destination folder. Let’s try using <code>mv</code> now:</p>
+<pre class="sourceCode bash"><code class="sourceCode bash"><span class="fu">mv</span> journal-2017-01-24.txt Journal
+<span class="fu">ls</span></code></pre>
+<pre><code>Code
+Documents
+Journal
+Photos
+Desktop
+Music
+echo-out.txt
+todo.txt</code></pre>
+<p>Looks like it worked! I just realized however that we should move the <code>Journal</code>
+directory into the <code>Documents</code> folder. Thankfully we can do this with <code>mv</code> in
+the same way:</p>
+<pre class="sourceCode bash"><code class="sourceCode bash"><span class="fu">mv</span> Journal Documents
+<span class="fu">ls</span></code></pre>
+<pre><code>Code
+Documents
+Photos
+Desktop
+Music
+echo-out.txt
+todo.txt</code></pre>
+<p>Let’s just make sure it ended up in the right place:</p>
+<pre class="sourceCode bash"><code class="sourceCode bash"><span class="fu">ls</span> Documents</code></pre>
+<pre><code>Journal
+a-tale-of-two-cities.txt</code></pre>
+<p>Looks good! Another hidden use of the <code>mv</code> command is that you can use it to
+rename files and folders. The first argument is the path to the folder or file
+that you want to rename, and the second argument is a path with the new name
+for the file or folder. Let’s rename <code>todo.txt</code> so it includes today’s date:</p>
+<pre class="sourceCode bash"><code class="sourceCode bash"><span class="fu">mv</span> todo.txt todo-2017-01-24.txt
+<span class="fu">ls</span></code></pre>
+<pre><code>Code
+Documents
+Photos
+Desktop
+Music
+echo-out.txt
+todo-2017-01-24.txt</code></pre>
+<p>Looks like it worked nicely. Similar to the <code>mv</code> command, the <code>cp</code> command
+<strong>c</strong>o<strong>p</strong>ies a file or folder from one location to another. As you can see <code>cp</code> is
+used exactly like <code>mv</code> when copying files, the file or folder you wish to copy
+is the first argument, followed by the path to the folder where you want the
+copy to be made:</p>
+<pre class="sourceCode bash"><code class="sourceCode bash"><span class="fu">cp</span> echo-out.txt Desktop
+<span class="fu">ls</span></code></pre>
+<pre><code>Code
+Documents
+Photos
+Desktop
+Music
+echo-out.txt
+todo-2017-01-24.txt</code></pre>
+<pre class="sourceCode bash"><code class="sourceCode bash"><span class="fu">ls</span> Desktop</code></pre>
+<pre><code>echo-out.txt</code></pre>
+<p>Be aware that there is one difference between copying files and folders, when
+copying folders you need to specify the <code>-r</code> option, which is short for
+<em>recursive</em>. This ensures that the underlying directory structure of the
+directory you wish to copy remains intact. Let’s try copying my <code>Documents</code>
+directory into the <code>Desktop</code> directory:</p>
+<pre class="sourceCode bash"><code class="sourceCode bash"><span class="fu">cp</span> -r Documents Desktop
+<span class="fu">ls</span> Desktop</code></pre>
+<pre><code>Documents
+echo-out.txt</code></pre>
+<p>Finally, let’s discuss how to delete files and folders with the command line.
+<strong>A word of extreme caution:</strong> in general I do not recommend deleting files or
+folders on the command line because as we have discussed before there is
+<strong><em>no undo button</em></strong> on the command line. If you delete a file that is critical
+to your computer functioning you may cause irreparable damage. I <em>highly</em>
+recommend moving files or folders to a designated trash folder and then deleting
+them the way you would normally delete files and folders outside of the command
+line (The path to the Trash Bin is <code>~/.Trash</code> on Mac and <code>~/.local/share/Trash</code>
+on Ubuntu). If you decide to delete
+a file or folder on your computer make absolutely
+sure that the command you have typed is correct before you press <code>Enter</code>. If you do
+delete a file or folder by accident stop using your computer immediately and
+consult with a computer professional or your IT department so they can try to
+recover the file.</p>
+<p>Now that you have been warned, let’s discuss <code>rm</code>, the
+<a href="https://en.wikipedia.org/wiki/Magic_in_Harry_Potter#Unforgivable_Curses">Avada Kedavra</a>
+of command line programs. When <strong>r</strong>e<strong>m</strong>oving files <code>rm</code> only requires the path to a
+file in order to delete it. Let’s test its destructive power on <code>echo-out.txt</code>:</p>
+<pre class="sourceCode bash"><code class="sourceCode bash"><span class="fu">rm</span> echo-out.txt
+<span class="fu">ls</span></code></pre>
+<pre><code>Code
+Documents
+Photos
+Desktop
+Music
+todo-2017-01-24.txt</code></pre>
+<blockquote>
+<p>I felt a great disturbance in the Force, as if millions of voices suddenly cried out in terror, and were suddenly silenced. - <em>Obi-wan Kenobi</em></p>
+</blockquote>
+<p>The file <code>echo-out.txt</code> is gone forever. Remember when we copied the entire
+<code>Documents</code> directory into <code>Desktop</code>? Let’s get rid of that directory now. Just
+like when we were using <code>cp</code> the <code>rm</code> command requires you to use the <code>-r</code>
+option when deleting entire directories. Let’s test this battle station:</p>
+<pre class="sourceCode bash"><code class="sourceCode bash"><span class="fu">ls</span> Desktop</code></pre>
+<pre><code>Documents
+echo-out.txt</code></pre>
+<pre class="sourceCode bash"><code class="sourceCode bash"><span class="fu">rm</span> -r Desktop/Documents
+<span class="fu">ls</span> Desktop</code></pre>
+<pre><code>echo-out.txt</code></pre>
+<p>Now that the awesome destructive power of <code>rm</code> is on your side, you have learned
+the basics of the command line! See you in the next chapter for a discussion of
+more advanced command line topics.</p>
+<div id="summary-3" class="section level3">
+<h3><span class="header-section-number">3.4.1</span> Summary</h3>
+<ul>
+<li><code>mv</code> can be used for moving or renaming files or folders.</li>
+<li><code>cp</code> can copy files or folders.</li>
+<li>You should try to avoid using <code>rm</code> which permanently removes files or folders.</li>
+</ul>
+</div>
+<div id="exercises-3" class="section level3">
+<h3><span class="header-section-number">3.4.2</span> Exercises</h3>
+<ol style="list-style-type: decimal">
+<li>Create a file called <code>message.txt</code> in your home directory and move it into
+another directory.</li>
+<li>Copy the <code>message.txt</code> you just moved into your home directory.</li>
+<li>Delete both copies of <code>message.txt</code>. Try to do this without using <code>rm</code>.</li>
+</ol>
+
+</div>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="getting-unix.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="working-with-unix.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"google": false,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"all": ["facebook", "google", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"download": null,
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+</body>
+
+</html>
